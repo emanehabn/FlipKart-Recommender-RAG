@@ -6,6 +6,6 @@ logs/
 __pycache__/
 
 *.egg-info/
-flipKart/
+
 notes.txt
 .env
