@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-canvas: #F0F1EE;         /* The warm-grey background from the image */
+    --card-white: #FFFFFF;
+    --accent-sage: #DDEEE6;       /* The "Unusual" green tint */
+    --accent-lavender: #E0E2FD;   /* The "Normal" purple tint */
+    --text-main: #1A1A1A;         /* Near black */
+    --text-subtle: #6B6B6B;       /* Muted grey */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: var(--bg-canvas);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-main);
+}
+
+/* The Chat Container - Mimicking the main Dashboard card */
+.chat-card {
+    height: 650px;
+    background: var(--card-white);
+    border-radius: 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header - "Hey, User!" Style */
+.chat-header {
+    background: transparent;
+    padding: 2.5rem 2rem 1.5rem 2rem;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+
+.status-text {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    margin-top: 4px;
+}
+
+/* Message Body Area */
+.msg-body {
+    background-color: transparent;
+    padding: 1rem 2rem;
+}
+
+/* Bubbles - The Bento Box Look */
+.msg-container, .msg-container-send {
+    max-width: 85%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    border-radius: 20px;
+}
+
+/* Bot Message (Left) - The Sage Green Look */
+.msg-container {
+    background-color: var(--accent-sage);
+    color: #2D4A3E; /* Darker green for readability */
+    padding: 20px;
+    border-bottom-left-radius: 4px;
+}
+
+/* User Message (Right) - The Lavender Look */
+.msg-container-send {
+    background-color: var(--accent-lavender);
+    color: #3B3E6E; /* Darker purple */
+    padding: 20px;
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+}
+
+/* Input Area - Integrated Bottom Bar */
+.chat-footer {
+    padding: 1.5rem 2rem 2.5rem 2rem;
+    background: white;
+    border-top: 1px solid #F0F0F0;
+}
+
+.chat-input {
+    background: #F8F9F8 !important;
+    border: 1px solid #EAEAEA !important;
+    border-radius: 16px !important;
+    padding: 14px 20px !important;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.send-btn {
+    background: var(--text-main); /* Deep charcoal button */
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px; /* Squircle shape from the "Data Insights" buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.send-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}

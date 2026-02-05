@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Recommender | AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
+</head>
+<body class="main-bg flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="chat-card w-full max-w-2xl overflow-hidden flex flex-col h-[600px]">
+        
+        <div class="chat-header p-5 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <img src="https://e7.pngegg.com/pngimages/589/77/png-clipart-green-shopping-cart-shopping-cart-online-shopping-e-commerce-icon-green-shopping-cart-angle-text.png" 
+                         class="avatar-main w-12 h-12 bg-white p-1 shadow-sm">
+                    <span class="online-indicator absolute -bottom-1 -right-1 w-4 h-4 border-2 rounded-full"></span>
+                </div>
+                <div>
+                    <h1 class="header-title font-bold text-lg tracking-tight">Flipkart Assistant</h1>
+                    <div class="flex items-center gap-1.5">
+                        <span class="status-dot w-1.5 h-1.5 rounded-full animate-pulse"></span>
+                        <span class="status-text text-xs font-medium">I'm Ready to help</span>
+                    </div>
+                </div>
+            </div>
+            <button class="settings-btn p-2 rounded-xl transition-colors">
+                <i data-lucide="settings-2" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div id="messageFormeight" class="msg-body flex-1 p-6 overflow-y-auto space-y-6 custom-scrollbar">
+            </div>
+
+        <div class="chat-footer p-5 bg-white border-t">
+            <form id="messageArea" class="flex items-center gap-3">
+                <div class="relative flex-1">
+                    <input type="text" id="text" name="msg" placeholder="Ask me anything..." 
+                           class="chat-input w-full border-none rounded-2xl px-5 py-3.5 text-sm outline-none"
+                           autocomplete="off" required>
+                </div>
+                <button type="submit" id="send" class="send-btn p-3.5 flex items-center justify-center transition-all">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            lucide.createIcons();
+
+            function scrollToBottom() {
+                const chatBody = $("#messageFormeight");
+                chatBody.scrollTop(chatBody[0].scrollHeight);
+            }
+
+            $("#messageArea").on("submit", function(event) {
+                event.preventDefault();
+                const date = new Date();
+                const str_time = date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0');
+                const rawText = $("#text").val();
+
+                // User Message UI - Now using CSS classes
+                const userHtml = `
+                    <div class="flex justify-end group">
+                        <div class="max-w-[80%]">
+                            <div class="msg-container-send px-5 py-3 shadow-md">
+                                <p class="text-[0.95rem] leading-relaxed">${rawText}</p>
+                            </div>
+                            <span class="msg-time-send block text-right font-medium mt-1.5">${str_time}</span>
+                        </div>
+                    </div>`;
+                
+                $("#text").val("");
+                $("#messageFormeight").append(userHtml);
+                scrollToBottom();
+
+                $.ajax({
+                    data: { msg: rawText },
+                    type: "POST",
+                    url: "/get",
+                }).done(function(data) {
+                    // Bot Message UI - Now using CSS classes
+                    const botHtml = `
+                        <div class="flex justify-start">
+                            <div class="max-w-[80%]">
+                                <div class="msg-container px-5 py-3 shadow-sm">
+                                    <p class="text-[0.95rem] leading-relaxed">${data}</p>
+                                </div>
+                                <span class="msg-time block mt-1.5">${str_time}</span>
+                            </div>
+                        </div>`;
+                    $("#messageFormeight").append($.parseHTML(botHtml));
+                    scrollToBottom();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
