@@ -33,8 +33,8 @@ This is my working RAG system built around a real Flipkart dataset and a real de
 
 ```bash
 ### Install dependencies
-git clone https://github.com/emanehabn/FlipKart-Recommender-RAG.git
-cd FlipKart-Recommender-RAG
+git clone https://github.com/emanehabn/ElectronicsKart-Recommender-RAG.git
+cd ElectronicsKart-Recommender-RAG
 pip install -e .
 
 python app.py
