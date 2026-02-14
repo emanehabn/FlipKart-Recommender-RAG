@@ -1,17 +1,18 @@
 lark==1.2.2
-langchain
-langchain-community
-langchain-astradb
-langchain-huggingface
-langchain-groq
-sentence-transformers
-pypdf
-python-dotenv
-datasets
-pandas
-numpy
-flask
-prometheus_client
+langchain==1.1.0
+langchain-community==0.4.1
+langchain-astradb==1.0.0
+langchain-huggingface==1.2.0
+langchain-groq==1.1.0
+sentence-transformers==5.1.2
+pypdf==6.6.2
+python-dotenv==1.2.1
+datasets==4.5.0
+pandas==3.1.2
+numpy==2.2.6
+flask==3.1.2
+prometheus_client==0.23.1
 
 
 ## -e .
+
